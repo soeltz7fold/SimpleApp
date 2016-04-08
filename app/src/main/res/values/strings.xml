@@ -3,6 +3,6 @@
     <string name="action_settings">Settings</string>
     <string name="VAL">"Your Result Here"</string>
     <string name="balance_is">Your Balance Is =</string>
-    <string name="simpleapp">~SIMPLE CALCULATOR APP~</string>
+    <string name="simpleapp">~SIMPLE BALANCE APP~</string>
     <item name="menus" type="id">KICK Me !!!</item>
 </resources>

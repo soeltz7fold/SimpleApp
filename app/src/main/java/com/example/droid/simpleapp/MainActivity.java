@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -19,12 +20,13 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     EditText income, outcome;
     Button btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn0, btnC, btnD;
     String evalue, operation,result2;
-    TextView tv;
+    TextView tv, title_app;
     Integer value1, value2, result;
     Boolean minus;
 
@@ -34,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         tv = (TextView) findViewById(R.id.val);
+        title_app = (TextView)findViewById(R.id.title_app);
         income = (EditText) findViewById(R.id.income);
         outcome = (EditText) findViewById(R.id.outcome);
         btn1 = (Button) findViewById(R.id.button1);
@@ -57,16 +60,19 @@ public class MainActivity extends AppCompatActivity {
 //        InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 //        inputManager.hideSoftInputFromWindow(income.getWindowToken(),
 //        InputMethodManager.RESULT_HIDDEN);
-        income.setOnTouchListener(new View.OnTouchListener() {
-            @Override public boolean onTouch(View v, MotionEvent event) {
-                EditText edittext = (EditText) v;
-                int inType = edittext.getInputType();       // Backup the input type
-                edittext.setInputType(InputType.TYPE_NULL); // Disable standard keyboard
-                edittext.onTouchEvent(event);               // Call native handler
-                edittext.setInputType(inType);              // Restore input type
-                return true; // Consume touch event
-            }
-        });
+
+//        income.setOnTouchListener(new View.OnTouchListener() {
+//            @Override public boolean onTouch(View v, MotionEvent event) {
+//                EditText edittext = (EditText) v;
+//                int inType = edittext.getInputType();       // Backup the input type
+//                edittext.setInputType(InputType.TYPE_NULL); // Disable standard keyboard
+//                edittext.onTouchEvent(event);               // Call native handler
+//                edittext.setInputType(inType);              // Restore input type
+//                return true; // Consume touch event
+//            }
+//        });
+        income.setInputType(InputType.TYPE_NULL);
+        income.setTextIsSelectable(true);
         income.setOnTouchListener(new View.OnTouchListener() {
             public boolean onTouch(View arg0, MotionEvent arg1) {
                 evalue = "1";
@@ -211,16 +217,20 @@ public class MainActivity extends AppCompatActivity {
         Fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String vin = income.getText().toString();
-                String vout = outcome.getText().toString();
-                  String anta = "income";
+//                String vin = income.getText().toString();
+//                String vout = outcome.getText().toString();
+//                String anta = "income";
                     value1 = Integer.parseInt(income.getText() + "");
                     value2 = Integer.parseInt(outcome.getText() + "");
-                if (value1+value2>=0){
+                if (value1+value2>=0) {
                     result = value2 - value1;
-                    tv.setText("" +result);
-                   }else{
-                    tv.setText("WRONG INPUT");}
+                    tv.setText("" + result);
+                    title_app.setText("SUCCEED");
+                    Toast.makeText(getApplicationContext(),"Your Balance Is = " +result, Toast.LENGTH_LONG).show();
+                }
+//              else{
+//                    tv.setText("WRONG INPUT");
+//                }
                 }
             }
         );
@@ -246,7 +256,6 @@ public class MainActivity extends AppCompatActivity {
                 }
                 return super.onOptionsItemSelected(item);
             }
-
         }
 
 

@@ -29,7 +29,8 @@
         <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="number"
+                android:inputType="none"
+                android:textIsSelectable="true"
                 android:ems="10"
                 android:id="@+id/income"
                 android:hint="INCOME"
@@ -43,7 +44,8 @@
         <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="number"
+                android:inputType="none"
+                android:textIsSelectable="true"
                 android:ems="10"
                 android:id="@+id/outcome"
                 android:layout_below="@+id/income"
